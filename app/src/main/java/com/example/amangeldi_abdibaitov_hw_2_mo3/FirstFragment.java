@@ -17,6 +17,7 @@ import java.io.Serializable;
 public class FirstFragment extends Fragment {
 
     private TextView tvZero;
+    private int count = 0;
     private Button btnPlus1;
     private Button btnMinus1;
     private Button btnNext;
@@ -45,32 +46,38 @@ public class FirstFragment extends Fragment {
     private void initListener() {
 
         btnPlus1.setOnClickListener(view -> {
-            int number = Integer.parseInt(tvZero.getText().toString());
-            number = number + 1;
-            tvZero.setText(String.valueOf(number));
+            if (view.getId() == R.id.btn_plus) {
+                count++;
+                tvZero.setText(String.valueOf(count));
+            }
 
         });
 
         btnMinus1.setOnClickListener(v -> {
-            int number = Integer.parseInt(tvZero.getText().toString());
-            number = number - 1;
-            tvZero.setText(String.valueOf(number));
+            if (v.getId() == R.id.btn_minus){
+                count--;
+                tvZero.setText(String.valueOf(count));
+            }
         });
-    
+
         btnNext.setOnClickListener(v -> {
             goToNextFragment();
         });
     }
 
     private void goToNextFragment() {
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("tvResult", (Serializable) tvZero);
+        btnNext.setOnClickListener(view -> {
+            Bundle bundle = new Bundle();
+            bundle.putInt("2", count);
 
-        SecondFragment secondFragment = new SecondFragment();
-        secondFragment.setArguments(bundle);
+            SecondFragment secondFragment= new SecondFragment();
+            secondFragment.setArguments(bundle);
 
-        requireActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentContainer, secondFragment)
-                .addToBackStack(null).commit();
+            requireActivity().getSupportFragmentManager().beginTransaction().
+                    replace(R.id.fragmentContainer,secondFragment).addToBackStack(null).commit();
+
+        });
+
     }
+
 }
