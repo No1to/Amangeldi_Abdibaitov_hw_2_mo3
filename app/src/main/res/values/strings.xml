@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Amangeldi_Abdibaitov_hw_2_mo3</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="zero">0</string>
+    <string name="plus1">+ 1</string>
+    <string name="minus1">- 1</string>
+    <string name="send">send</string>
+</resources>
